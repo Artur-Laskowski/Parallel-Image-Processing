@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pt_lab3.Controller">
+    <center>
+        <TableView fx:id="imagesTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="imageNameColumn" prefWidth="435.0" text="Image name"/>
+                <TableColumn fx:id="progressColumn" minWidth="0.0" prefWidth="253.0" text="Progress"/>
+                <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="110.0" text="Status"/>
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <BorderPane prefHeight="43.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <left>
+                <Pane prefHeight="43.0" prefWidth="362.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#setFiles" text="Choose files"/>
+                    </children>
+                </Pane>
+            </left>
+            <right>
+                <Pane prefHeight="43.0" prefWidth="515.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button layoutX="20.0" layoutY="9.0" mnemonicParsing="false" onAction="#processFiles"
+                                prefWidth="80.0" text="3 threads"/>
+                        <Button layoutX="120.0" layoutY="9.0" mnemonicParsing="false" onAction="#processFiles2"
+                                prefWidth="80.0" text="commonPool"/>
+                        <Button layoutX="220.0" layoutY="9.0" mnemonicParsing="false" onAction="#processFiles3"
+                                prefWidth="80.0" text="sequential"/>
+                        <Label fx:id="label" layoutX="420.0" LayoutY="9.0" mnemonicParsing="false" prefWidth="100" text="0ms"/>
+                        <Button layoutX="320.0" layoutY="9.0" mnemonicParsing="false" onAction="#getTime"
+                                prefWidth="80.0" text="Get time"/>
+                    </children>
+                </Pane>
+            </right>
+        </BorderPane>
+    </bottom>
+</BorderPane>
