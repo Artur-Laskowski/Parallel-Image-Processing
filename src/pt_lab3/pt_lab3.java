@@ -16,7 +16,7 @@ public class pt_lab3 extends Application {
         
         stage.setMinWidth(600);
         stage.setMinHeight(200);
-        stage.setTitle("Lab 2");
+        stage.setTitle("Lab 3");
         stage.setScene(scene);
         stage.show();
     }

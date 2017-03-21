@@ -76,29 +76,29 @@ public class Controller implements Initializable {
 	@FXML
 	void processFiles(ActionEvent event) {
 		start = System.currentTimeMillis();
+		for (ImageProcessingJob j : jobs) {
+			j.setProgressProperty(0.0);
+		}
 		ForkJoinPool forkJoinPool = new ForkJoinPool(3);
 		forkJoinPool.submit(() -> jobs.parallelStream().forEach(this::convertStart));
-		//forkJoinPool.submit(this::backgroundJob);
-		//new Thread(this::backgroundJob).start();
 	}
 	
 	@FXML
 	void processFiles2(ActionEvent event) {
 		start = System.currentTimeMillis();
-		new Thread(this::backgroundJob).start();
+		for (ImageProcessingJob j : jobs) {
+			j.setProgressProperty(0.0);
+		}
+		new Thread(this::backgroundJobParalell).start();
 	}
 	
 	@FXML
 	void processFiles3(ActionEvent event) {
 		start = System.currentTimeMillis();
-		/*
-		for (ImageProcessingJob f : jobs) {
-			
-			File dir = new File(f.file.getParent()+"\\output\\");
-			convertToGrayscale(f.file, dir, f.getProgressProperty());
+		for (ImageProcessingJob j : jobs) {
+			j.setProgressProperty(0.0);
 		}
-        duration = System.currentTimeMillis() - start;*/
-		new Thread(this::backgroundJob2).start();
+		new Thread(this::backgroundJob).start();
 	}
 	
 	@FXML
@@ -106,13 +106,13 @@ public class Controller implements Initializable {
 		label.setText(duration + "ms");
 	}
 	
-	private void backgroundJob() {
-		//oepracje w tle
+	private void backgroundJobParalell() {
+		//wersja wspó³bie¿na
 		jobs.parallelStream().forEach(this::convertStart);
 	}
 	
-	private void backgroundJob2() {
-		//oepracje w tle
+	private void backgroundJob() {
+		//wersja sekwencyjna
 		jobs.stream().forEach(this::convertStart);
 	}
 	
