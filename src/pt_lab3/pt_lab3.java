@@ -1,7 +1,5 @@
 package pt_lab3;
 
-import java.io.Console;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

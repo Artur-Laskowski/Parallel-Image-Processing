@@ -91,10 +91,14 @@ public class Controller implements Initializable {
 	@FXML
 	void processFiles3(ActionEvent event) {
 		start = System.currentTimeMillis();
-		ForkJoinPool forkJoinPool = new ForkJoinPool(1);
-		//forkJoinPool.submit(() -> jobs.parallelStream().forEach(this::convertStart));
-		forkJoinPool.submit(this::backgroundJob);
-		//new Thread(this::backgroundJob).start();
+		/*
+		for (ImageProcessingJob f : jobs) {
+			
+			File dir = new File(f.file.getParent()+"\\output\\");
+			convertToGrayscale(f.file, dir, f.getProgressProperty());
+		}
+        duration = System.currentTimeMillis() - start;*/
+		new Thread(this::backgroundJob2).start();
 	}
 	
 	@FXML
@@ -105,6 +109,11 @@ public class Controller implements Initializable {
 	private void backgroundJob() {
 		//oepracje w tle
 		jobs.parallelStream().forEach(this::convertStart);
+	}
+	
+	private void backgroundJob2() {
+		//oepracje w tle
+		jobs.stream().forEach(this::convertStart);
 	}
 	
 	private void convertStart(ImageProcessingJob job) {
